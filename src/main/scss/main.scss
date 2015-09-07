@@ -1,0 +1,123 @@
+$fa-font-path: "../../bower_components/font-awesome/fonts";
+$icon-font-path: "../../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+
+@import "font-awesome/scss/font-awesome";
+
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+.widget-header .row div {
+  margin: 0;
+}
+
+.widget .widget-body.login {
+  height: 200px;
+  overflow-y: hidden;
+}
+
+body {
+  background: #f3f3f3;
+}
+
+#breadcrumb-links .breadcrumb {
+  background-color: white;
+  font-size: 12px;
+  padding: 0;
+}
+
+#breadcrumb-rechts .breadcrumb {
+  background-color: white;
+  float: right;
+  font-size: 12px;
+  padding: 0;
+}
+
+.page-header {
+  margin-top: 0px;
+}
+
+.widget-content address {
+  padding: 10px 0 0 10px;
+}
+
+.widget-content fieldset {
+  padding: 10px 0 10px 10px;
+}
+
+.number {
+  list-style: outside none inside;
+  padding-top: 10px;
+}
+
+.widget .widget-header {
+  padding: 5px 10px;
+}
+
+.row.header .meta div {
+  overflow: visible;
+}
+
+.table.table-borderless td, .table.table-borderless th {
+  border: 0 !important;
+}
+
+.table.table-borderless {
+  margin-bottom: 0px;
+}
+
+.table.table-summary td {
+  padding: 2px;
+  width: 20px;
+}
+
+.with-padding {
+  padding: 10px;
+}
+
+.btn-dog {
+  width: 150px !important;
+}
+
+.fa {
+  padding-right: 5px;
+}
+
+#actionButton {
+  width: 150px;
+
+}
+
+.file-over {
+  background-color: grey;
+}
+
+.file-over {
+  //position: absolute;
+  //top: 12%;
+  //left: 50%;
+  //margin-left: -25px;
+  //content: "";
+  //width: 51px;
+  //height: 33px;
+  background-image: url("/Content/Styles/images/Sourcery/icn-upload.png");
+  background-size: 100%;
+}
+
+.drop-zone{
+  margin-bottom: 0px;
+}
+.file-upload-field{
+  text-align: center;
+  border: dashed 3px #C1C3C5;
+}
+
+
+.ui-select-container > span.glyphicon.form-control-feedback{
+  top:0;
+  right: 15px;
+}
+
+.huge {
+  font-size: 40px;
+}

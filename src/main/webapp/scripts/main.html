@@ -1,0 +1,277 @@
+<header ng-if="false" class="navbar">
+    <div class="container-fluid expanded-panel">
+        <div class="row">
+            <div id="logo" class="col-sm-2">
+                <a href="#">Temel Reis</a>
+            </div>
+            <div id="top-panel" class="col-sm-10">
+                <div class="row">
+                    <div class="col-xs-4 col-sm-4">
+                        <!--           <a href="#" class="show-sidebar">
+                                       <i class="fa fa-bars"></i>
+                                   </a>-->
+
+                        <!--     <div id="search">
+                                 <input type="text" placeholder="search"/>
+                                 <i class="fa fa-search"></i>
+                             </div>-->
+                    </div>
+                    <div class="col-xs-4 col-sm-8 top-panel-right">
+                        <ul class="nav navbar-nav pull-right panel-menu">
+                            <!--                  <li class="hidden-xs">
+                                                  <a href="index.html" class="modal-link">
+                                                      <i class="fa fa-bell"></i>
+                                                      <span class="badge">7</span>
+                                                  </a>
+                                              </li>
+                                              <li class="hidden-xs">
+                                                  <a class="ajax-link" href="ajax/calendar.html">
+                                                      <i class="fa fa-calendar"></i>
+                                                      <span class="badge">7</span>
+                                                  </a>
+                                              </li>
+                                              <li class="hidden-xs">
+                                                  <a href="ajax/page_messages.html" class="ajax-link">
+                                                      <i class="fa fa-envelope"></i>
+                                                      <span class="badge">7</span>
+                                                  </a>
+                                              </li>-->
+                            <li class="dropdown">
+                                <a href="" class="dropdown-toggle account" data-toggle="dropdown">
+                                    <div class="avatar">
+                                        <img src="assets/images/avatar.png" class="img-rounded" alt="avatar"/>
+                                    </div>
+                                    <i class="fa fa-angle-down pull-right"></i>
+
+                                    <div ng-controller="LoggedUserController" class="user-mini pull-right">
+                                        <span class="welcome">Willkommen,</span>
+                                        <span>{{ login.firstName }}  {{ login.lastName }}</span>
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a ui-sref="app.private.user.detail">
+                                            <i class="fa fa-user"></i>
+                                            <span class=" text">Detail</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ui-sref="app.private.user.detail.passwortChange">
+                                            <i class="fa fa-key"></i>
+                                            <span class=" text">Passwort Ändern</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-controller="LogoutController" ng-click="logout()">
+                                            <i class="fa fa-power-off"></i>
+                                            <span class="hidden-sm text">Logout</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<!--Start Container-->
+<div ng-if="false" id="main" class="container-fluid">
+    <div class="row">
+        <div id="sidebar-left" class="col-sm-2">
+
+            <div ng-include="'views/partial/menu.html'"></div>
+
+
+        </div>
+        <!--Start Content-->
+
+
+        <div id="content" class="col-sm-10">
+            <div ui-view></div>
+        </div>
+        <!--  End Content-->
+    </div>
+</div>
+<!--End Container-->
+
+
+<!-- -->
+<toaster-container toaster-options="{'close-button': 'true', 'time-out': 2000}"></toaster-container>
+
+<div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar">
+            <li class="sidebar-main">
+                <a ng-click="toggleSidebar()">
+                    Dashboard
+                    <span class="menu-icon glyphicon glyphicon-transfer"></span>
+                </a>
+            </li>
+            <li class="sidebar-title"><span>NAVIGATION</span></li>
+
+
+            <li class="sidebar-list">
+                <a ng-class="{active: ('app.private.dashboard' | includedByState)}"
+                   ui-sref="app.private.dashboard">
+                    <span>Dashboard</span>
+                    <i class="menu-icon fa fa-tachometer"></i>
+                </a>
+            </li>
+
+            <li class="sidebar-list " ng-class="{open: ('app.private.employee' | includedByState)}">
+                <a ui-sref="app.private.employee.list">
+                    <span>Mitarbeiter</span>
+                    <i class="menu-icon fa fa-male"></i>
+                </a>
+                <ul ng-if="false" class="dropdown-menu">
+                    <li ng-class="{open: ('app.private.employee.id' | includedByState)}">
+                        <a ui-sref="app.private.employee.list"
+                           ng-class="{active: ('app.private.employee.list' | includedByState)}">
+                            Mitarbeiter Liste
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-class="{active: ('app.private.employee.add' | includedByState)}"
+                           ui-sref="app.private.employee.add">
+                            Mitarbeiter Anlegen
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="sidebar-list">
+                <a ui-sref="app.private.certificate.list">Zertifikate<span
+                        class="menu-icon fa fa-certificate"></span></a>
+            </li>
+
+
+            <li class="sidebar-list">
+                <a ui-sref="app.private.workStation.list">Baustellen<span class="menu-icon fa fa-table"></span></a>
+            </li>
+
+            <li class="sidebar-list">
+                <a ui-sref="app.private.workStation.summary">Baustellen Übersicht<span
+                        class="menu-icon fa fa-list-ul"></span></a>
+            </li>
+            <li class="sidebar-list">
+                <a ui-sref="app.private.about">About <span class="menu-icon fa fa-bars"></span></a>
+            </li>
+        </ul>
+        <div class="sidebar-footer">
+            <div class="col-xs-4">
+                <a ui-sref="app.private.home" target="_blank">
+                    Home
+                </a>
+            </div>
+            <div class="col-xs-4">
+                <a ui-sref="app.private.about">
+                    About
+                </a>
+            </div>
+            <div class="col-xs-4">
+                <a href="#">
+                    Support
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- End Sidebar -->
+
+    <div id="content-wrapper">
+        <div class="page-content">
+
+
+            <!-- Header Bar -->
+            <div class="row header">
+                <div class="col-xs-12">
+                    <div class="user pull-right">
+                        <div class="item dropdown">
+                            <a href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="assets/images/avatar.jpg">
+                            </a>
+                            <ul ng-controller="AccountController" class="dropdown-menu dropdown-menu-right">
+                                <li class="dropdown-header">
+                                    {{login.firstName}} {{login.lastName}}
+                                </li>
+                                <li class="divider"></li>
+                                <li class="link">
+                                    <a ui-sref="app.private.user.detail">
+                                        Benutzernamen Ändern
+                                    </a>
+                                </li>
+                                <li class="link">
+                                    <a ui-sref="app.private.user.detail.passwortChange">
+                                        Passwort Ändern
+                                    </a>
+                                </li>
+                                <li class="link">
+                                    <a ng-click="logout()">
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="item dropdown" id="actionButton" ui-view="actionMenu"></div>
+                        <!--<div >-->
+                        <!--<a href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                        <!--<i class="fa fa-cogs"></i> Action-->
+                        <!--</a>-->
+                        <!--<ul  class="dropdown-menu dropdown-menu-right">-->
+                        <!--<li class="link">-->
+                        <!--<a ui-sref="app.private.user.detail">-->
+                        <!--Benutzernamen Ändern-->
+                        <!--</a>-->
+                        <!--</li>-->
+                        <!--<li class="link">-->
+                        <!--<a ui-sref="app.private.user.detail.passwortChange">-->
+                        <!--Passwort Ändern-->
+                        <!--</a>-->
+                        <!--</li>-->
+                        <!--<li class="link">-->
+                        <!--<a ng-click="logout()">-->
+                        <!--Logout-->
+                        <!--</a>-->
+                        <!--</li>-->
+                        <!--</ul>-->
+                        <!--</div>-->
+                        <!--<div class="item dropdown">-->
+                        <!--<a href="#" class="dropdown-toggle">-->
+                        <!--<i class="fa fa-bell-o"></i>-->
+                        <!--</a>-->
+                        <!--<ul class="dropdown-menu dropdown-menu-right">-->
+                        <!--<li class="dropdown-header">-->
+                        <!--Notifications-->
+                        <!--</li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li>-->
+                        <!--<a href="#">Server Down!</a>-->
+                        <!--</li>-->
+                        <!--</ul>-->
+                        <!--</div>-->
+
+
+                    </div>
+                    <div class="meta" ui-view="breadcrumb">
+
+                    </div>
+                </div>
+            </div>
+            <!-- End Header Bar -->
+
+            <!-- Main Content -->
+            <div ui-view="content"></div>
+
+        </div>
+        <!-- End Page Content -->
+    </div>
+    <!-- End Content Wrapper -->
+</div><!-- End Page Wrapper -->
+
