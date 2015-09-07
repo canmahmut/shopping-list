@@ -1,0 +1,58 @@
+<section class="section container-fluid">
+
+
+    <div ui-content-for="title">
+        <span>Einkaufs Liste</span>
+    </div>
+
+    <div class="scrollable">
+        <div class="scrollable-content section">
+
+            <fieldset>
+                <div class="form-group ">
+                    <input type="text"
+                           ng-model="email"
+                           class="form-control"
+                           placeholder="Suchen">
+                </div>
+
+            </fieldset>
+            <hr>
+
+
+            <div class="list-group" ng-repeat="item in ctrl.products">
+                <span class="list-group-item clearfix">{{item.name}}
+                    <span class="pull-right">
+                        <button class="btn btn-xs btn-info">{{item.stock}}</button>
+                          <button ng-click="ctrl.decreaseStock(item)" class="btn btn-xs btn-info btn-badge">-</button>
+                        <button ng-click="ctrl.increaseStock(item)" class="btn btn-xs btn-info btn-badge">+</button>
+                    </span>
+                </span>
+            </div>
+
+
+
+            <form role="form" ng-submit='ctrl.addProduct()'>
+                <fieldset>
+                    <div class="form-group">
+                        <input type="text"
+                               ng-model="ctrl.name"
+                               class="form-control"
+                               placeholder="Neues Produkt">
+                    </div>
+
+                </fieldset>
+                <button type="submit" class="btn btn-primary btn-block">
+                    Einfügen
+                </button>
+
+
+            </form>
+        </div>
+
+
+    </div>
+
+</section>
+
+
