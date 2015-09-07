@@ -12,7 +12,10 @@
 
     <!-- build:css assets/styles/vendor.css -->
     <!-- bower:css -->
-
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-hover.css" />
+    <link rel="stylesheet" href="bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-base.css" />
+    <link rel="stylesheet" href="bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-desktop.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -21,7 +24,14 @@
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
-
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js"></script>
+    <script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.gestures.js"></script>
+    <script src="bower_components/ng-underscore/build/ng-underscore.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- endbower -->
 
     <!-- endbuild -->
@@ -31,13 +41,16 @@
     <!-- include: "type": "js", "files": "<%= app.scripts %>" -->
 
 
+  <script src="scripts/_app.js"></script>
+    <script src="scripts/about/about.router.js"></script>
+    <script src="scripts/app.router.js"></script>
+    <script src="scripts/app/app.constants.js"></script>
     <!-- /include -->
     <!-- endbuild -->
 
 
-    <script src="js/app.min.js"></script>
   </head>
-  <body ng-app="ZettelApp" ng-controller="MainController">
+  <body ng-app="app" ng-controller="MainController">
 
     <!-- Sidebars -->
     <div ng-include="'sidebar.html'" 

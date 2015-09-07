@@ -9,14 +9,14 @@
  * Main module of the application.
  */
 angular
-    .module('certiApp', [
+    .module('app', [
         'ui.router',
         'mobile-angular-ui',
-        'ZettelApp.controllers.Main',
+   //     'ZettelApp.controllers.Main',
         'ngUnderscore'
     ]);
 
 
-angular.module('certiApp')
+angular.module('app')
     .constant('REST_URL', '/api')
     .constant('REST_URL_SERVER', './api');

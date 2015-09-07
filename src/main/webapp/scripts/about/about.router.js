@@ -1,6 +1,6 @@
 'use strict';
 angular
-    .module('certiApp')
+    .module('app')
     .config(function ($stateProvider) {
         $stateProvider
             .state('app.private.about', {
