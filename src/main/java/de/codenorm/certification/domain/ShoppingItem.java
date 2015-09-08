@@ -1,8 +1,5 @@
 package de.codenorm.certification.domain;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
 
 /**
@@ -10,7 +7,6 @@ import javax.persistence.*;
  */
 
 @Entity
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class ShoppingItem {
 
 

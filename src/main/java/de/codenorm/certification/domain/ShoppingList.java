@@ -19,10 +19,10 @@ public class ShoppingList {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<ShoppingItem> selectedItems;
 
-    @Temporal(TemporalType.TIME)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
 
     private boolean archived;

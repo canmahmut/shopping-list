@@ -1,22 +1,6 @@
 package de.codenorm.certification.service;
 
-import de.codenorm.certification.domain.User;
-import org.apache.commons.lang.CharEncoding;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.MessageSource;
-import org.springframework.core.env.Environment;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.context.Context;
-import org.thymeleaf.spring4.SpringTemplateEngine;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import javax.mail.internet.MimeMessage;
-import java.util.Locale;
 
 /**
  * Service for sending e-mails.
@@ -27,8 +11,7 @@ import java.util.Locale;
  */
 @Service
 public class MailService {
-
-    private final Logger log = LoggerFactory.getLogger(MailService.class);
+/*    private final Logger log = LoggerFactory.getLogger(MailService.class);
 
     @Inject
     private Environment env;
@@ -42,9 +25,9 @@ public class MailService {
     @Inject
     private SpringTemplateEngine templateEngine;
 
-    /**
+    *
      * System default email address that sends the e-mails.
-     */
+
     private String from;
 
     @PostConstruct
@@ -94,5 +77,5 @@ public class MailService {
         String content = templateEngine.process("passwordResetEmail", context);
         String subject = messageSource.getMessage("email.reset.title", null, locale);
         sendEmail(user.getEmail(), subject, content, false, true);
-    }
+    }*/
 }

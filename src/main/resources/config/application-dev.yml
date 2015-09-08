@@ -6,8 +6,9 @@ spring:
         active: dev
     datasource:
         dataSourceClassName: org.h2.jdbcx.JdbcDataSource
-        url: jdbc:h2:mem:jhipster;DB_CLOSE_DELAY=-1
-        databaseName: 
+        url1: jdbc:h2:mem:jhipster;DB_CLOSE_DELAY=-1
+        url: jdbc:h2:tcp://localhost/~/shopping
+        databaseName:
         serverName: 
         username: 
         password: 
@@ -19,8 +20,8 @@ spring:
         show_sql: true
         generate-ddl: true
         hibernate:
-            ddl-auto: update
-            #naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
+            ddl-auto: create
+            naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
         properties:
             hibernate.cache.use_second_level_cache: true
             hibernate.cache.use_query_cache: false

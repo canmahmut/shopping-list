@@ -3,6 +3,7 @@ package de.codenorm.certification.web.rest.resource;
 import de.codenorm.certification.domain.Product;
 import de.codenorm.certification.domain.ShoppingItem;
 import de.codenorm.certification.domain.ShoppingList;
+import de.codenorm.certification.repository.ShoppingListRepository;
 import de.codenorm.certification.web.propertyeditors.LocaleDateTimeEditor;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.math.RandomUtils;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +25,9 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/shoppingList")
 public class ShoppingListResource {
 
+
+    @Inject
+    private ShoppingListRepository shoppingListRepository;
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -73,13 +78,13 @@ public class ShoppingListResource {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<ShoppingList> findAll() {
-        return  shoppingLists;
+        return shoppingListRepository.findAll();
     }
 
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ShoppingList findById(@PathVariable("id") Long id) {
-        return shoppingLists.stream().filter(a -> a.getId().equals(id)).findFirst().get();
+        return shoppingListRepository.findOne(id);
     }
 
    /* @RequestMapping(value = "/audits/byDates",
