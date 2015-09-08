@@ -1,6 +1,5 @@
 package de.codenorm.certification;
 
-import com.google.common.base.Joiner;
 import de.codenorm.certification.config.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,7 +68,6 @@ public class Application {
         app.setShowBanner(false);
         SimpleCommandLinePropertySource source = new SimpleCommandLinePropertySource(args);
         addDefaultProfile(app, source);
-        addLiquibaseScanPackages();
         Environment env = app.run(args).getEnvironment();
         log.info("Access URLs:\n----------------------------------------------------------\n\t" +
                         "Local: \t\thttp://127.0.0.1:{}\n\t" +
@@ -91,16 +89,5 @@ public class Application {
         }
     }
 
-    /**
-     * Set the liquibases.scan.packages to avoid an exception from ServiceLocator.
-     */
-    private static void addLiquibaseScanPackages() {
-        System.setProperty("liquibase.scan.packages", Joiner.on(",").join(
-                "liquibase.change", "liquibase.database", "liquibase.parser",
-                "liquibase.precondition", "liquibase.datatype",
-                "liquibase.serializer", "liquibase.sqlgenerator", "liquibase.executor",
-                "liquibase.snapshot", "liquibase.logging", "liquibase.diff",
-                "liquibase.structure", "liquibase.structurecompare", "liquibase.lockservice",
-                "liquibase.ext", "liquibase.changelog"));
-    }
+
 }

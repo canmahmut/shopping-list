@@ -32,7 +32,7 @@ module.exports = function (grunt) {
         app: {
             // Application variables
             scripts: [
-                'scripts/_app.js',
+                'scripts/app.js',
                 'scripts/**/*.js'
             ]
         },

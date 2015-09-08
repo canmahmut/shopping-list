@@ -1,10 +1,8 @@
 package de.codenorm.certification.config;
 
-import de.codenorm.certification.domain.*;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.ConfigurableMapper;
 import org.springframework.stereotype.Component;
-import rest.model.*;
 
 /**
  * Created by can on 26.05.15.
@@ -15,7 +13,7 @@ public class OrikaMapper extends ConfigurableMapper {
     @Override
     protected void configure(MapperFactory factory) {
         super.configure(factory);
-        factory.registerClassMap(factory.classMap(Wage.class, WageDto.class)
+       /* factory.registerClassMap(factory.classMap(Wage.class, WageDto.class)
                 .byDefault()
                 .toClassMap());
         factory.registerClassMap(factory.classMap(WageDto.class, Wage.class)
@@ -49,8 +47,7 @@ public class OrikaMapper extends ConfigurableMapper {
                 .field("workStation", "workStationDto")
                 .field("employee", "employeeDto")
                 .toClassMap());
-
-
+*/
 
     }
 }
