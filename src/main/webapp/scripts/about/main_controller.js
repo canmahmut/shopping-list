@@ -1,4 +1,5 @@
-angular.module('ZettelApp.controllers.Main', [])
+angular
+    .module('app')
 
 .controller('MainController', function($scope){
   

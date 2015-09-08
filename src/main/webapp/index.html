@@ -42,7 +42,11 @@
 
 
   <script src="scripts/_app.js"></script>
+    <script src="scripts/about/AtHomeCtrl.js"></script>
+    <script src="scripts/about/BucketController.js"></script>
+    <script src="scripts/about/BuyingController.js"></script>
     <script src="scripts/about/about.router.js"></script>
+    <script src="scripts/about/main_controller.js"></script>
     <script src="scripts/app.router.js"></script>
     <script src="scripts/app/app.constants.js"></script>
     <!-- /include -->
@@ -53,7 +57,7 @@
   <body ng-app="app" ng-controller="MainController">
 
     <!-- Sidebars -->
-    <div ng-include="'sidebar.html'" 
+    <div ng-include="'scripts/sidebar/sidebar.html'"
             ui-track-as-search-param='true'
             class="sidebar sidebar-left"></div>
 

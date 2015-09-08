@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('ZettelApp.controllers.Main')
+angular
+    .module('app')
 
     .controller('BuyingController', function ($scope, BucketData) {
 

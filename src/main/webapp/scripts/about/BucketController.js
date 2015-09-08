@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('ZettelApp.controllers.Main')
+angular
+    .module('app')
 
     .factory('BucketData', function (underscore) {
         var data = [];
