@@ -1,4 +1,4 @@
-package de.codenorm.certification.web.rest;
+package de.codenorm.certification.web.rest.resource;
 
 import de.codenorm.certification.service.AuditEventService;
 import de.codenorm.certification.web.propertyeditors.LocaleDateTimeEditor;

@@ -4,15 +4,14 @@
   "appPath": "src/main/webapp",
   "testPath": "src/test/javascript/spec",
   "dependencies": {
-
     "angular": "1.x",
+    "angular-resource": "~1.x",
     "angular-route": "1.x",
+    "angular-ui-router": "~0.2.13",
     "bootstrap": "3.x",
     "font-awesome": "4.2",
     "mobile-angular-ui": "1.2.x",
-    "ng-underscore": "~0.1.0",
-    "angular-ui-router": "~0.2.13"
-
+    "ng-underscore": "~0.1.0"
   },
   "resolutions": {
     "angular": "1.4.5"

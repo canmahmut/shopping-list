@@ -9,27 +9,10 @@ angular.module('app')
 
         $stateProvider.state('home', {
             url: '/',
-            templateUrl: 'home.html',
+            templateUrl: 'scripts/home/home.html',
             reloadOnSearch: false,
             controller: 'AtHomeCtrl as ctrl'
         });
-        $stateProvider.state('buying', {
-            url: '/einkaufen',
-            templateUrl: 'einkaufen.html',
-            controller: 'BuyingController as ctrl',
-            reloadOnSearch: false
-        });
-    })
-
-
-    .controller('MainController', function (){})
 ;
-
-
-/*
- $stateProvider
- .state('state1', {
- url: "/state1",
- templateUrl: "partials/state1.html"
- })
- */
+    })
+;

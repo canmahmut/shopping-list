@@ -26,12 +26,13 @@
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js"></script>
     <script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.gestures.js"></script>
     <script src="bower_components/ng-underscore/build/ng-underscore.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- endbower -->
 
     <!-- endbuild -->
@@ -42,13 +43,15 @@
 
 
   <script src="scripts/app.js"></script>
-    <script src="scripts/about/AtHomeCtrl.js"></script>
     <script src="scripts/about/BucketController.js"></script>
-    <script src="scripts/about/BuyingController.js"></script>
     <script src="scripts/about/about.router.js"></script>
     <script src="scripts/about/main_controller.js"></script>
     <script src="scripts/app.router.js"></script>
     <script src="scripts/app/app.constants.js"></script>
+    <script src="scripts/buying/BuyingController.js"></script>
+    <script src="scripts/buying/buying.router.js"></script>
+    <script src="scripts/buying/shoppingList.js"></script>
+    <script src="scripts/home/AtHomeCtrl.js"></script>
     <!-- /include -->
     <!-- endbuild -->
 
@@ -82,7 +85,7 @@
       <!-- App Body -->
       <div class="app-body">
         <div class="app-content">
-          <ng-view></ng-view>  
+          <ui-view></ui-view>
         </div>
       </div>
 

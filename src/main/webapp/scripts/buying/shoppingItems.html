@@ -1,0 +1,14 @@
+<section class="section container-fluid">
+
+
+    <div class="list-group" ng-repeat="item in ctrl.data.selectedItems">
+                <span
+                        ng-class="{'list-group-item-info':item.done}"
+                        class="list-group-item clearfix">{{item.product.name}}
+                    <span class="pull-right">
+                        <button class="btn btn-xs btn-info">{{item.stock}}</button>
+                    </span>
+                </span>
+    </div>
+
+</section>

@@ -5,6 +5,11 @@ angular
 
     .controller('AtHomeCtrl', function ($scope, BucketData) {
 
+
+
+
+
+
         var self = this;
 
         self.products = BucketData.all();

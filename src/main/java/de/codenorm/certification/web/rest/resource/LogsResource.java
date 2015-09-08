@@ -1,4 +1,4 @@
-package de.codenorm.certification.web.rest;
+package de.codenorm.certification.web.rest.resource;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;

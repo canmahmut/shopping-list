@@ -12,7 +12,7 @@ angular
     .module('app', [
         'ui.router',
         'mobile-angular-ui',
-        //'ZettelApp.controllers.Main',
+        'ngResource',
         'ngUnderscore'
     ]);
 

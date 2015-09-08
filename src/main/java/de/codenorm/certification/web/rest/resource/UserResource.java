@@ -1,4 +1,4 @@
-package de.codenorm.certification.web.rest;
+package de.codenorm.certification.web.rest.resource;
 
 import de.codenorm.certification.domain.User;
 import de.codenorm.certification.repository.UserRepository;
