@@ -7,12 +7,5 @@ angular.module('app')
 
         $urlRouterProvider.otherwise("/");
 
-        $stateProvider.state('home', {
-            url: '/',
-            templateUrl: 'scripts/home/home.html',
-            reloadOnSearch: false,
-            controller: 'AtHomeCtrl as ctrl'
-        });
-;
     })
 ;
