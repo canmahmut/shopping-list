@@ -45,9 +45,7 @@ angular.module('app')
 
 
                             var b =underscore.chain(data[1]).filter(function (obj) {
-                                var b2 = p.id == obj.id;
-                                console.log('c: '+b2);
-                                return b2;
+                                return p.id == obj.id;
                             }).first().value();
                             console.log('b is ' + JSON.stringify(b));
 
