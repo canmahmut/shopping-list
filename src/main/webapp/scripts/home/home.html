@@ -23,6 +23,7 @@
             <div class="list-group" ng-repeat="item in ctrl.products">
                 <span class="list-group-item clearfix">{{item.product.name}}
                     <span class="pull-right">
+                        {{item}}
                         <button class="btn btn-xs btn-info">{{item.stock}}</button>
                           <button ng-click="ctrl.decreaseStock(item)" class="btn btn-xs btn-info btn-badge">-</button>
                         <button ng-click="ctrl.increaseStock(item)" class="btn btn-xs btn-info btn-badge">+</button>

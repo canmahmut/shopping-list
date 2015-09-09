@@ -11,8 +11,8 @@ angular.module('app')
             });
     }])
 
-    .factory('ShoppingListItem', ['$resource', function ($resource) {
-        return $resource('/api/shoppingList/:shoppingListId/:id', null,
+    .factory('ShoppingItem', ['$resource', function ($resource) {
+        return $resource('/api/shoppingItem/:id', null,
             {
                 'update':   {method:'PUT'}
             });

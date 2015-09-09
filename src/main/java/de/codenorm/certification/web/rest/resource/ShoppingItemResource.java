@@ -1,6 +1,5 @@
 package de.codenorm.certification.web.rest.resource;
 
-import de.codenorm.certification.domain.Product;
 import de.codenorm.certification.domain.ShoppingItem;
 import de.codenorm.certification.service.ShoppingListService;
 import de.codenorm.certification.web.propertyeditors.LocaleDateTimeEditor;
@@ -15,12 +14,12 @@ import java.util.List;
  * Created by can on 08.09.15.
  */
 @RestController
-@RequestMapping("/api/shoppingList")
-public class ShoppingListResource {
+@RequestMapping("/api/shoppingItem")
+public class ShoppingItemResource {
 
 
-
-
+    @Inject
+    private ShoppingListService shoppingListService;
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -28,8 +27,21 @@ public class ShoppingListResource {
     }
 
 
+    @RequestMapping(method = RequestMethod.GET)
+    public List<ShoppingItem> findShoppingList() {
+        return shoppingListService.findShoppingItems();
+    }
 
 
+    @RequestMapping(method = RequestMethod.POST)
+    public ShoppingItem saveShoppingItem(@RequestBody ShoppingItem shoppingItem) {
+        return shoppingListService.save(shoppingItem);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ShoppingItem updateShoppingItem(@PathVariable("id") Long id, @RequestBody ShoppingItem shoppingItem) {
+        return shoppingListService.update(id, shoppingItem);
+    }
 
 
 
