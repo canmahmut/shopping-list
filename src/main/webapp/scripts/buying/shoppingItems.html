@@ -2,13 +2,14 @@
 
 
     <div class="list-group" ng-repeat="item in ctrl.data">
-                <span
-                        ng-class="{'list-group-item-info':item.done}"
-                        class="list-group-item clearfix">{{item.product.name}}
+        <a
+                ng-click="ctrl.toggle(item)"
+                ng-class="{'list-group-item-info':item.done}"
+                class="list-group-item clearfix">{{item.product.name}}
                     <span class="pull-right">
                         <button class="btn btn-xs btn-info">{{item.stock}}</button>
                     </span>
-                </span>
+        </a>
     </div>
 
 </section>

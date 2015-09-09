@@ -46,6 +46,8 @@ public class ShoppingListService {
         ShoppingItem one = shoppingItemRepository.findOne(id);
         if(shoppingItem.isDone()){
             one.setDone(true);
+        }else{
+            one.setDone(false);
         }
         one.setStock(shoppingItem.getStock());
         return one;

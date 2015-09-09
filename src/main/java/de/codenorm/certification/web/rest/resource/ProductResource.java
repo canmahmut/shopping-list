@@ -1,7 +1,6 @@
 package de.codenorm.certification.web.rest.resource;
 
 import de.codenorm.certification.domain.Product;
-import de.codenorm.certification.domain.ShoppingList;
 import de.codenorm.certification.repository.ProductRepository;
 import de.codenorm.certification.web.propertyeditors.LocaleDateTimeEditor;
 import org.joda.time.LocalDateTime;

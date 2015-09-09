@@ -12,55 +12,50 @@ angular
         self.products = products;
 
 
-        //ShoppingItem.query().$promise.then(function (data) {
-        //    self.shoppingList = data;
-        //});
-
-
-        var ax = function (item) {
-            return underscore.findWhere(self.products, {id: item.id});
+        var updateProduct = function (p) {
+            var match = underscore.find(self.products, function (item) {
+                return item.product.id === p.product.id
+            });
+            if (match) {
+                match.stock = p.stock;
+                match.id = p.id;
+                match.done = p.done;
+                console.log(match);
+            }
         };
 
         self.decreaseStock = function (item) {
-            if (ax(item) == 'undefined') {
-                self.shoppingList.selectedItems.push(item);
+            if (item.id != null) {
+                item.stock = item.stock - 1;
+                item.done = false;
+                ShoppingItem.update({id: item.id}, item).$promise.then(function (data) {
+                });
+            } else {
+                ShoppingItem.save({}, item
+                ).$promise.then(function (data) {
+                        updateProduct(data);
+                    });
             }
-            //if (item.stock >= 1) {
-            //    var byId = getById(self.products, item.id);
-            //    byId.stock--;
-            //    if (byId.stock == 0) {
-            //        //BucketData.delete(byId);
-            //    }
-            //}
+
         };
 
         self.addProduct = function () {
             if (self.name != null) {
-                //BucketData.putToList({
-                //        id: Math.random(), name: self.name, stock: 0
-                //    }
-                //);
                 self.name = '';
             }
         };
 
 
         self.increaseStock = function (item) {
-            console.log('increase' + JSON.stringify(item));
-
             if (item.id != null) {
-                console.log('updating');
                 item.stock = item.stock + 1;
+                item.done = false;
                 ShoppingItem.update({id: item.id}, item).$promise.then(function (data) {
-                    //var find = ax(data);
-                    //console.log('find' + JSON.stringify(find));
-                    //find.stock = data.stock;
                 });
             } else {
-                console.log('saving');
                 ShoppingItem.save({}, item
                 ).$promise.then(function (data) {
-                        self.products.push(data);
+                        updateProduct(data);
                     });
             }
         };
