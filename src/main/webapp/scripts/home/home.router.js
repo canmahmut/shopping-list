@@ -8,12 +8,26 @@ angular.module('app')
             reloadOnSearch: false,
             controller: 'AtHomeCtrl as ctrl',
             resolve: {
-                products: function (Product, $q) {
+                products: function (Product, $q, underscore) {
                     var deferred = $q.defer();
                     Product.query({}).$promise.then(function (data) {
-                        deferred.resolve(data);
+
+
+                        var arr = [];
+                        underscore.each(data, function (item) {
+                            arr.push({
+
+                                    stock: 0,
+                                    product: item
+                                }
+                            )
+                        });
+
+
+                        deferred.resolve(arr);
+
+
                     }, function (data) {
-                        console.log(data);
                         deferred.reject();
                     });
                     return deferred.promise;

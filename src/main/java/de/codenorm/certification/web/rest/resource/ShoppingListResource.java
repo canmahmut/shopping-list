@@ -4,19 +4,14 @@ import de.codenorm.certification.domain.Product;
 import de.codenorm.certification.domain.ShoppingItem;
 import de.codenorm.certification.domain.ShoppingList;
 import de.codenorm.certification.repository.ShoppingListRepository;
+import de.codenorm.certification.service.ShoppingListService;
 import de.codenorm.certification.web.propertyeditors.LocaleDateTimeEditor;
-import org.apache.commons.lang.RandomStringUtils;
-import org.apache.commons.lang.math.RandomUtils;
 import org.joda.time.LocalDateTime;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by can on 08.09.15.
@@ -29,52 +24,14 @@ public class ShoppingListResource {
     @Inject
     private ShoppingListRepository shoppingListRepository;
 
+    @Inject
+    private ShoppingListService shoppingListService;
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(LocalDateTime.class, new LocaleDateTimeEditor("yyyy-MM-dd", false));
     }
 
-
-    int count = 4;
-
-    List<Product> productList = new ArrayList<>(count);
-
-    @PostConstruct
-    public void init() {
-        for (int i = 0; i < count; i++) {
-            Product product = new Product();
-            product.setId((long) RandomUtils.nextInt(40));
-            product.setName(RandomStringUtils.randomAlphabetic(6));
-            productList.add(product);
-        }
-        shoppingLists.add(new ShoppingList());
-        shoppingLists.add(new ShoppingList());
-        shoppingLists.add(new ShoppingList());
-        shoppingLists = shoppingLists.stream().
-                map(a -> {
-                    a.setArchived(RandomUtils.nextBoolean());
-                    a.setCreationDate(new Date());
-                    a.setId((long) RandomUtils.nextInt(40));
-
-                    int capacity = RandomUtils.nextInt(count);
-                    List<ShoppingItem> selectedProductList = new ArrayList<>(capacity);
-
-                    for (int i = 0; i < capacity; i++) {
-                        ShoppingItem e = new ShoppingItem();
-                        e.setDone(RandomUtils.nextBoolean());
-                        e.setProduct(productList.get(i));
-                        e.setStock(RandomUtils.nextInt(5));
-                        selectedProductList.add(e);
-                    }
-
-                    a.setSelectedItems(selectedProductList);
-                    return a;
-
-                }).collect(Collectors.toList());
-
-    }
-
-    private List<ShoppingList> shoppingLists = new ArrayList<>();
 
     @RequestMapping(method = RequestMethod.GET)
     public List<ShoppingList> findAll() {
@@ -82,10 +39,24 @@ public class ShoppingListResource {
     }
 
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    public ShoppingItem saveShoppingItem(@PathVariable("id") Long id, @RequestBody Product product) {
+        return shoppingListService.save(id, product);
+    }
+
+    @RequestMapping(value = "/{id}/{itemId}", method = RequestMethod.PUT)
+    public ShoppingItem saveShoppingItem(@PathVariable("id") Long id, @PathVariable("itemId") Long itemId, @RequestBody ShoppingItem product) {
+        return shoppingListService.update(id, itemId, product);
+    }
+
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ShoppingList findById(@PathVariable("id") Long id) {
         return shoppingListRepository.findOne(id);
     }
+
+
+
 
    /* @RequestMapping(value = "/audits/byDates",
             method = RequestMethod.GET,

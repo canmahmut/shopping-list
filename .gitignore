@@ -1,9 +1,7 @@
-/dog.iml
+/*.iml
 /.idea/*
 /.idea
-./dog.iml
 /target
-/dog.iml
 /src/main/webapp/dist
 /.tmp
 /bower_components

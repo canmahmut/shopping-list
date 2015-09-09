@@ -1,9 +1,11 @@
 package de.codenorm.certification.domain;
 
+import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +21,7 @@ public class ShoppingList {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Cascade(CascadeType.ALL)
     @OneToMany(fetch = FetchType.EAGER)
     private List<ShoppingItem> selectedItems;
 

@@ -3,18 +3,35 @@
 angular
     .module('app')
 
-    .controller('AtHomeCtrl', function ($scope, products,selectedProducts) {
-
-
-
-
+    .controller('AtHomeCtrl', function ($scope, products, underscore, ShoppingList, ShoppingListItem) {
 
 
         var self = this;
 
+
         self.products = products;
 
+
+        ShoppingList.get({id: 1}).$promise.then(function (data) {
+            self.shoppingList = data;
+        });
+
+        //self.shoppingList = {
+        //    id: 1,
+        //    selectedItems: [],
+        //    creationDate: new Date(),
+        //    archived: false
+        //};
+
+
+        var ax = function (item) {
+            return underscore.findWhere(self.shoppingList.selectedItems, {id: item.id});
+        };
+
         self.decreaseStock = function (item) {
+            if (ax(item) == 'undefined') {
+                self.shoppingList.selectedItems.push(item);
+            }
             //if (item.stock >= 1) {
             //    var byId = getById(self.products, item.id);
             //    byId.stock--;
@@ -36,12 +53,54 @@ angular
 
 
         self.increaseStock = function (item) {
-            var byId = getById(self.products, item.id);
-            //BucketData.delete(byId);
-            //BucketData.put(item);
-            byId.stock++;
-        };
+            console.log('increase' + JSON.stringify(item));
 
+            if (item.id != null) {
+                console.log('updating');
+                ShoppingListItem.update({
+                    shoppingListId: self.shoppingList.id,
+                    id: item.id
+                }, item).$promise.then(function (data) {
+                        //var find = ax(data);
+                        //console.log(find);
+                        //find.stock = data.stock;
+                    });
+            } else {
+                console.log('saving');
+                ShoppingListItem.save({shoppingListId: self.shoppingList.id},
+                    item.product
+                ).$promise.then(function (data) {
+                        self.products.push(data);
+                    });
+            }
+
+            if (item.id == 1) {
+                ShoppingListItem.update({shoppingListId: self.shoppingList.id, id: 1},
+
+                    {"id": 1, "product": {"id": 1, "name": "Salz"}, "stock": 20, "done": true}
+                ).$promise.then(function (data) {
+                        self.products.push(data);
+                    });
+            }
+
+            //if (item.id == 3) {
+            //    ShoppingListItem.save({shoppingListId: self.shoppingList.id},
+            //
+            //         {"id": 1, "name": "Salz"}
+            //    ).$promise.then(function (data) {
+            //            console.log(data);
+            //        });
+            //}
+
+
+            //if (ax(item) == 'undefined') {
+            //    // call to server
+            //    // update shopppingList
+            //
+            //    //self.shoppingList.selectedItems.push(item);
+            //
+            //}
+        };
 
 
     })

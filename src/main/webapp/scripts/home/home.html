@@ -21,7 +21,7 @@
 
 
             <div class="list-group" ng-repeat="item in ctrl.products">
-                <span class="list-group-item clearfix">{{item.name}}
+                <span class="list-group-item clearfix">{{item.product.name}}
                     <span class="pull-right">
                         <button class="btn btn-xs btn-info">{{item.stock}}</button>
                           <button ng-click="ctrl.decreaseStock(item)" class="btn btn-xs btn-info btn-badge">-</button>
@@ -29,7 +29,6 @@
                     </span>
                 </span>
             </div>
-
 
 
             <form role="form" ng-submit='ctrl.addProduct()'>
@@ -43,11 +42,12 @@
 
                 </fieldset>
                 <button type="submit" class="btn btn-primary btn-block">
-                    Einfügen
+                    Einfï¿½gen
                 </button>
 
 
             </form>
+            h:{{ctrl.shoppingList}}
         </div>
 
 
