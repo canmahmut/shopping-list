@@ -25,7 +25,7 @@ angular
 
 
         var ax = function (item) {
-            return underscore.findWhere(self.shoppingList.selectedItems, {id: item.id});
+            return underscore.findWhere(self.products, {id: item.id});
         };
 
         self.decreaseStock = function (item) {
@@ -57,13 +57,14 @@ angular
 
             if (item.id != null) {
                 console.log('updating');
+                item.stock = item.stock +1;
                 ShoppingListItem.update({
                     shoppingListId: self.shoppingList.id,
                     id: item.id
                 }, item).$promise.then(function (data) {
-                        //var find = ax(data);
-                        //console.log(find);
-                        //find.stock = data.stock;
+                       var find = ax(data);
+                        console.log('find' + JSON.stringify(find));
+                        find.stock = data.stock;
                     });
             } else {
                 console.log('saving');
