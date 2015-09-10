@@ -3,6 +3,7 @@ package de.codenorm.certification.web.rest.resource;
 import com.google.common.collect.Lists;
 import de.codenorm.certification.domain.Product;
 import de.codenorm.certification.repository.ProductRepository;
+import de.codenorm.certification.service.ProductService;
 import de.codenorm.certification.web.propertyeditors.LocaleDateTimeEditor;
 import org.joda.time.LocalDateTime;
 import org.springframework.web.bind.WebDataBinder;
@@ -19,8 +20,9 @@ import java.util.List;
 public class ProductResource {
 
 
+
     @Inject
-    private ProductRepository productRepository;
+    private ProductService productService;
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -30,26 +32,27 @@ public class ProductResource {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Product> findAll() {
-        return Lists.newArrayList(productRepository.findAll());
+        return productService.findAll();
     }
 
 
     @RequestMapping(method = RequestMethod.POST)
     public Product save(@RequestBody String name) {
-        Product product = new Product();
-        product.setName(name);
-        Product existing = productRepository.findByNameContainingIgnoreCase(name);
-        if (existing != null) {
-            throw new RuntimeException("Product exits");
-        } else {
-            return productRepository.save(product);
-        }
+       return productService.save(name);
 
     }
 
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public Product update(@PathVariable("id") Long id, @RequestBody Product product) {
+        return productService.update(id,product);
+
+    }
+
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Product findById(@PathVariable("id") Long id) {
-        return productRepository.findOne(id);
+        return  productService.findOne(id);
     }
 
 }

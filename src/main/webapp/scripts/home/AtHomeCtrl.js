@@ -40,6 +40,20 @@ angular
 
         };
 
+        self.edit = function (item) {
+            self.selectedId = item.product.id;
+        };
+
+        self.updateProduct = function (item) {
+
+            Product.update({id: item.product.id}, item.product).$promise.then(function (data) {
+                self.selectedId = null;
+            }, function () {
+                self.globalError = 'Produkt exitiert bereits';
+            });
+        };
+
+
         self.addProduct = function () {
             self.error = '';
             if (self.name != null) {

@@ -97,7 +97,6 @@ module.exports = function (grunt) {
                 files: {
                     // compilation.css  :  source.less
                     "src/main/webapp/assets/styles/main.css": "src/main/webapp/less/main.less",
-                    "src/main/webapp/bower_components/bootstrap/dist/css/bootstrap.css": "src/main/webapp/bower_components/bootstrap/less/bootstrap.less"
                 }
             }
         },

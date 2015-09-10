@@ -17,8 +17,28 @@
 
     <hr/>
 
-    <button ng-click="ctrl.closeBuying()" class="btn btn-primary btn-block">
+    <button  ui-turn-on="modal2"  class="btn btn-primary btn-block">
         Einkaufen Abschlißen
     </button>
 
 </section>
+
+<div ui-content-for="modals">
+    <div class="modal modal-overlay" ui-if='modal2' ui-state='modal2'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close"
+                        ui-turn-off="modal2">&times;</button>
+                <h4 class="modal-title">Einkauf Abschließen?</h4>
+            </div>
+            <div class="modal-body">
+              Ja, ich möchte den Einkauf abschließen!
+            </div>
+            <div class="modal-footer">
+                <button ui-turn-off="modal2" class="btn btn-default btn-block">Abbrechen</button>
+                <button ui-turn-off="modal2" ng-click="ctrl.closeBuying()" class="btn btn-primary btn-block">Ja</button>
+            </div>
+        </div>
+    </div>
+</div></div>
