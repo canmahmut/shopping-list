@@ -3,7 +3,7 @@
 angular
     .module('app')
 
-    .controller('BuyingController', function ($scope, listItem, ShoppingItem) {
+    .controller('BuyingController', function ($scope, listItem, ShoppingItem, underscore, $q) {
 
         var self = this;
 
@@ -12,7 +12,6 @@ angular
 
 
         self.toggle = function (item) {
-            console.log('toggle' + JSON.stringify(item));
             if (item.id != null) {
                 item.done = !item.done;
                 ShoppingItem.update({id: item.id}, item).$promise.then(function (data) {
@@ -20,6 +19,19 @@ angular
             }
 
         };
+
+
+        self.closeBuying = function () {
+            var promises = [];
+            underscore.each(underscore.where(self.data, {done: true}), function (item) {
+                promises.push(ShoppingItem.delete({id: item.id}, item).$promise);
+            });
+            $q.all(promises).then(function (data) {
+                ShoppingItem.query().$promise.then(function (data) {
+                    self.data = data;
+                });
+            });
+        }
 
     })
 

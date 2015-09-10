@@ -44,6 +44,12 @@ public class ShoppingItemResource {
     }
 
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable("id") Long id) {
+        shoppingListService.delete(id);
+    }
+
+
 
 
 

@@ -50,6 +50,16 @@ public class ShoppingListService {
             one.setDone(false);
         }
         one.setStock(shoppingItem.getStock());
+
+        if(one.getStock() == 0){
+            shoppingItemRepository.delete(one.getId());
+            one.setId(null);
+        }
+
         return one;
+    }
+
+    public void delete(Long id) {
+        shoppingItemRepository.delete(id);
     }
 }

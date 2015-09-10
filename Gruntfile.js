@@ -13,6 +13,7 @@ module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
     require('grunt-connect-proxy')(grunt);
     require('grunt-include-source')(grunt);
+    grunt.loadNpmTasks('grunt-contrib-less');
 
     // Time how long tasks take. Can help when optimizing build times
     require('time-grunt')(grunt);
@@ -55,10 +56,7 @@ module.exports = function (grunt) {
                 files: ['test/spec/{,*/}*.js'],
                 tasks: ['newer:jshint:test']
             },
-            compass: {
-                files: ['<%= yeoman.app %>/styles/**/*.{scss,sass}', 'src/main/scss/**/*.{scss,sass}'],
-                tasks: ['compass:server', 'autoprefixer']
-            },
+
             gruntfile: {
                 files: ['Gruntfile.js']
             },
@@ -79,8 +77,29 @@ module.exports = function (grunt) {
                 options: {
                     event: ['added', 'deleted']
                 }
+            },
+            less: {
+                // if any .less file changes in directory "src/main/less/" run the "less"-task.
+                // change folders to watch accordingly
+                files: ["src/main/webapp/less/*.less", "src/main/webapp/bower_components/bootstrap/less/*.less"],
+                tasks: ["less"]
             }
 
+        },
+
+        less: {
+            //Development non minified version
+            dev: {
+                options: {
+                    //Wether to compress or not
+                    compress: false
+                },
+                files: {
+                    // compilation.css  :  source.less
+                    "src/main/webapp/assets/styles/main.css": "src/main/webapp/less/main.less",
+                    "src/main/webapp/bower_components/bootstrap/dist/css/bootstrap.css": "src/main/webapp/bower_components/bootstrap/less/bootstrap.less"
+                }
+            }
         },
 
         includeSource: {
@@ -283,41 +302,9 @@ module.exports = function (grunt) {
             app: {
                 src: ['<%= yeoman.app %>/index.html'],
                 ignorePath: /\.\.\//
-            },
-            sass: {
-                src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-                ignorePath: /(\.\.\/){1,2}bower_components\//
             }
         },
 
-        // Compiles Sass to CSS and generates necessary files if requested
-        compass: {
-            options: {
-                sassDir: 'src/main/scss',
-                cssDir: '<%= yeoman.app %>/assets/styles',
-                generatedImagesDir: '.tmp/images/generated',
-                imagesDir: '<%= yeoman.app %>/images',
-                javascriptsDir: '<%= yeoman.app %>/scripts',
-                fontsDir: '<%= yeoman.app %>/styles/fonts',
-                importPath: 'src/main/webapp/bower_components',
-                httpImagesPath: '/images',
-                httpGeneratedImagesPath: '/images/generated',
-                httpFontsPath: '/styles/fonts',
-                relativeAssets: false,
-                assetCacheBuster: false,
-                raw: 'Sass::Script::Number.precision = 10\n'
-            },
-            dist: {
-                options: {
-                    generatedImagesDir: '<%= yeoman.dist %>/images/generated'
-                }
-            },
-            server: {
-                options: {
-                    sourcemap: true
-                }
-            }
-        },
 
         // Renames files for browser caching purposes
         filerev: {
@@ -486,11 +473,6 @@ module.exports = function (grunt) {
                     cwd: '.tmp/images',
                     dest: '<%= yeoman.dist %>/images',
                     src: ['generated/*']
-                }, {
-                    expand: true,
-                    cwd: '.',
-                    src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
-                    dest: '<%= yeoman.dist %>'
                 }]
             },
             generateOpenshiftDirectory: {
@@ -512,14 +494,14 @@ module.exports = function (grunt) {
         // Run some tasks in parallel to speed up the build process
         concurrent: {
             server: [
-                'compass:server'
+                'less'
             ],
             test: [
-                'compass'
+                //'compass'
             ],
             dist: [
-                'compass:dist',
-                //'imagemin',
+                'less',
+                'imagemin',
                 'svgmin'
             ]
         }
@@ -553,9 +535,7 @@ module.exports = function (grunt) {
     grunt.registerTask('test', [
         'clean:server',
         'wiredep',
-
         'autoprefixer'
-
     ]);
 
     grunt.registerTask('build', [

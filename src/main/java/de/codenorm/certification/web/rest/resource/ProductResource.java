@@ -1,5 +1,6 @@
 package de.codenorm.certification.web.rest.resource;
 
+import com.google.common.collect.Lists;
 import de.codenorm.certification.domain.Product;
 import de.codenorm.certification.repository.ProductRepository;
 import de.codenorm.certification.web.propertyeditors.LocaleDateTimeEditor;
@@ -27,13 +28,24 @@ public class ProductResource {
     }
 
 
-
-
     @RequestMapping(method = RequestMethod.GET)
     public List<Product> findAll() {
-        return productRepository.findAll();
+        return Lists.newArrayList(productRepository.findAll());
     }
 
+
+    @RequestMapping(method = RequestMethod.POST)
+    public Product save(@RequestBody String name) {
+        Product product = new Product();
+        product.setName(name);
+        Product existing = productRepository.findByNameContainingIgnoreCase(name);
+        if (existing != null) {
+            throw new RuntimeException("Product exits");
+        } else {
+            return productRepository.save(product);
+        }
+
+    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Product findById(@PathVariable("id") Long id) {

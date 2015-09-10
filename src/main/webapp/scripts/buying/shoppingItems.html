@@ -1,5 +1,8 @@
 <section class="section container-fluid">
 
+    <div ng-if="ctrl.data.length<1">
+        Liste leer
+    </div>
 
     <div class="list-group" ng-repeat="item in ctrl.data">
         <a
@@ -11,5 +14,11 @@
                     </span>
         </a>
     </div>
+
+    <hr/>
+
+    <button ng-click="ctrl.closeBuying()" class="btn btn-primary btn-block">
+        Einkaufen Abschlißen
+    </button>
 
 </section>

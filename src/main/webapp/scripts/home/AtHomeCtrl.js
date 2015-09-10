@@ -3,7 +3,7 @@
 angular
     .module('app')
 
-    .controller('AtHomeCtrl', function ($scope, products, underscore, ShoppingItem) {
+    .controller('AtHomeCtrl', function ($scope, products, underscore, ShoppingItem, Product) {
 
 
         var self = this;
@@ -20,7 +20,6 @@ angular
                 match.stock = p.stock;
                 match.id = p.id;
                 match.done = p.done;
-                console.log(match);
             }
         };
 
@@ -29,6 +28,8 @@ angular
                 item.stock = item.stock - 1;
                 item.done = false;
                 ShoppingItem.update({id: item.id}, item).$promise.then(function (data) {
+
+
                 });
             } else {
                 ShoppingItem.save({}, item
@@ -40,8 +41,18 @@ angular
         };
 
         self.addProduct = function () {
+            self.error = '';
             if (self.name != null) {
-                self.name = '';
+                Product.save({}, self.name).$promise.then(function (data) {
+                    self.name = '';
+                    self.products.push({
+                        stock: 0,
+                        product: data,
+                        done: false
+                    });
+                }, function () {
+                    self.error = 'Produkt exitiert bereits';
+                });
             }
         };
 
