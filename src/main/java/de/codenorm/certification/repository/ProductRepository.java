@@ -10,5 +10,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface ProductRepository extends CrudRepository<Product, Long>, JpaSpecificationExecutor<Product> {
 
 
-    Product findByNameContainingIgnoreCase(String name);
+    Product findByNameEqualsIgnoreCase(String name);
 }

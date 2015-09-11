@@ -6,8 +6,7 @@ spring:
         active: dev
     datasource:
         dataSourceClassName: org.h2.jdbcx.JdbcDataSource
-        url1: jdbc:h2:mem:jhipster;DB_CLOSE_DELAY=-1
-        url: jdbc:h2:tcp://localhost/~/shopping
+        url: jdbc:h2:mem:shopping;DB_CLOSE_DELAY=-1
         databaseName:
         serverName: 
         username: 

@@ -28,7 +28,7 @@ public class ProductService {
     public Product save(String name) {
         Product product = new Product();
         product.setName(name);
-        Product existing = productRepository.findByNameContainingIgnoreCase(name);
+        Product existing = productRepository.findByNameEqualsIgnoreCase(name);
         if (existing != null) {
             throw new RuntimeException("Product exits");
         } else {
