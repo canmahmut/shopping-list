@@ -9,6 +9,8 @@ angular
         var self = this;
 
 
+        self.filter = '';
+
         self.products = products;
 
 
@@ -45,7 +47,6 @@ angular
         };
 
         self.updateProduct = function (item) {
-
             Product.update({id: item.product.id}, item.product).$promise.then(function (data) {
                 self.selectedId = null;
             }, function () {

@@ -4,7 +4,7 @@
         Liste leer
     </div>
 
-    <div class="list-group" ng-repeat="item in ctrl.data">
+    <div class="list-group" ng-repeat="item in ctrl.data | orderBy:'product.name'">
         <a
                 ng-click="ctrl.toggle(item)"
                 ng-class="{'list-group-item-info':item.done}"
