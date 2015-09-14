@@ -17,44 +17,47 @@
                 </div>
 
             </fieldset>
-            <hr>
 
 
             <div class=" dev list-group" style="margin-bottom: 0px;"
-                 ng-repeat="item in ctrl.products | filter:ctrl.filter | orderBy:'product.name'">
+                 ng-repeat="item in ctrl.products | filter:ctrl.filter">
 
                 <div class=" shopping-list list-group-item clearfix"
                      style="padding-left: 0px;padding-right: 0px; padding-top: 5px; padding-bottom: 5px;">
 
-                    <span class="col-xs-1">
-                        <span class="badge">{{item.stock}}</span>
-                    </span>
+                    <div class="row">
+                        <span class="col-xs-2">
+                            <span class="badge">{{item.stock}}</span>
+                        </span>
 
-                    <div ng-if="item.product.id != ctrl.selectedId" class="col-xs-4">{{item.product.name}}</div>
-                    <div ng-if="item.product.id == ctrl.selectedId" class="col-xs-4">
-                        <input ng-model="item.product.name" ng-blur="ctrl.updateProduct(item)"
-                               class="form-control"></div>
+                        <div ng-if="item.product.id != ctrl.selectedId" class="col-xs-4">{{item.product.name}}</div>
+                        <div ng-if="item.product.id == ctrl.selectedId" class="col-xs-4">
+                            <input ng-model="item.product.name" ng-blur="ctrl.updateProduct(item)"
+                                   class="form-control"></div>
 
-                    <div class="col-xs-2">
-                        <button ng-click="ctrl.edit(item)"
-                                ng-disabled="item.product.id == ctrl.selectedId "
-                                class="btn  btn-info">Edit
-                        </button>
-                    </div>
 
-                    <div class="col-xs-4">
-                        <div class="col-xs-6">
+                        <div class="col-xs-2" style="    padding-left: 3px;    padding-right: 13px;">
+                            <button ng-click="ctrl.edit(item)"
+                                    ng-show="item.product.id != ctrl.selectedId "
+                                    class="btn btn-block  btn-info">Edit
+                            </button>
+                            <button ng-click="ctrl.updateProduct(item)"
+                                    ng-show="item.product.id == ctrl.selectedId "
+                                    class="btn btn-block  btn-info">OK
+                            </button>
+                        </div>
+
+
+                        <div class="col-xs-2" style="    padding-left: 3px;    padding-right: 13px;">
                             <button
                                     ng-disabled="item.product.id == ctrl.selectedId || item.stock<1"
                                     ng-click="ctrl.decreaseStock(item)"
-
-                                    class="btn   btn-info">-
+                                    class="btn btn-block   btn-info">-
                             </button>
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-xs-2" style="    padding-left: 3px;    padding-right: 13px;">
                             <button ng-click="ctrl.increaseStock(item)"
                                     ng-disabled="item.product.id == ctrl.selectedId "
-
                                     class="btn btn-block  btn-info ">+
                             </button>
                         </div>
@@ -64,6 +67,52 @@
 
 
             </div>
+
+
+            <!--<div class=" dev list-group" style="margin-bottom: 0px;"-->
+            <!--ng-repeat="item in ctrl.products | filter:ctrl.filter | orderBy:'product.name'">-->
+
+            <!--<div class=" shopping-list list-group-item clearfix"-->
+            <!--style="padding-left: 0px;padding-right: 0px; padding-top: 5px; padding-bottom: 5px;">-->
+
+            <!--<span class="col-xs-1">-->
+            <!--<span class="badge">{{item.stock}}</span>-->
+            <!--</span>-->
+
+            <!--<div ng-if="item.product.id != ctrl.selectedId" class="col-xs-4">{{item.product.name}}</div>-->
+            <!--<div ng-if="item.product.id == ctrl.selectedId" class="col-xs-4">-->
+            <!--<input ng-model="item.product.name" ng-blur="ctrl.updateProduct(item)"-->
+            <!--class="form-control"></div>-->
+
+            <!--<div class="col-xs-2">-->
+            <!--<button ng-click="ctrl.edit(item)"-->
+            <!--ng-disabled="item.product.id == ctrl.selectedId "-->
+            <!--class="btn  btn-info">Edit-->
+            <!--</button>-->
+            <!--</div>-->
+
+            <!--<div class="col-xs-4">-->
+            <!--<div class="col-xs-6">-->
+            <!--<button-->
+            <!--ng-disabled="item.product.id == ctrl.selectedId || item.stock<1"-->
+            <!--ng-click="ctrl.decreaseStock(item)"-->
+
+            <!--class="btn   btn-info">- -->
+            <!--</button>-->
+            <!--</div>-->
+            <!--<div class="col-xs-6">-->
+            <!--<button ng-click="ctrl.increaseStock(item)"-->
+            <!--ng-disabled="item.product.id == ctrl.selectedId "-->
+
+            <!--class="btn btn-block  btn-info ">+-->
+            <!--</button>-->
+            <!--</div>-->
+            <!--</div>-->
+
+            <!--</div>-->
+
+
+            <!--</div>-->
 
 
             <form role="form" ng-submit='ctrl.addProduct()'>

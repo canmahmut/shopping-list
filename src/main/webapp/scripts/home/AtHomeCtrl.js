@@ -3,10 +3,7 @@
 angular
     .module('app')
 
-    .controller('AtHomeCtrl', function ($scope, products, underscore, ShoppingItem, Product) {
-
-
-
+    .controller('AtHomeCtrl', function ($scope, products, underscore, ShoppingItem, Product, $filter) {
 
 
         var self = this;
@@ -14,7 +11,7 @@ angular
 
         self.filter = '';
 
-        self.products = products;
+        self.products =$filter('orderBy')(products, 'product.name') ;
 
 
         var updateProduct = function (p) {
