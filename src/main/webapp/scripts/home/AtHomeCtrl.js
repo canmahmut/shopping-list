@@ -6,6 +6,9 @@ angular
     .controller('AtHomeCtrl', function ($scope, products, underscore, ShoppingItem, Product) {
 
 
+
+
+
         var self = this;
 
 
