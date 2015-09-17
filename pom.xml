@@ -245,6 +245,7 @@
         </dependency>
     </dependencies>
     <build>
+        <finalName>shopping-list</finalName>
         <resources>
             <resource>
                 <filtering>true</filtering>
