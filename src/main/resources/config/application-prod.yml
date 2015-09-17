@@ -30,13 +30,13 @@ spring:
         hibernate:
             ddl-auto: none
             naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
+            connection.autoReconnect true
+            connection.autoReconnectForPools: true
         properties:
             hibernate.cache.use_second_level_cache: true
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: false
             hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
-            hibernate.connection.autoReconnect true
-            hibernate.connection.autoReconnectForPools: true
 
     thymeleaf:
         mode: XHTML
