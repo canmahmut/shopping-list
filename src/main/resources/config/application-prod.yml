@@ -18,6 +18,8 @@ spring:
         prepStmtCacheSize: 250
         prepStmtCacheSqlLimit: 2048
         useServerPrepStmts: true
+        testOnBorrow: true
+        validationQuery: SELECT 1
 
     jpa:
         database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
@@ -33,7 +35,9 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: false
             hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
-            
+            hibernate.connection.autoReconnect true
+            hibernate.connection.autoReconnectForPools: true
+
     thymeleaf:
         mode: XHTML
         cache: true
